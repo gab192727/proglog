@@ -12,13 +12,6 @@ class TPopFavoritesSystem:
         self.root.geometry("1100x700")
         self.root.resizable(True, True)
 
-        image_path = "bg.png"
-        img = Image.open(image_path)
-        background_image = ImageTk.PhotoImage(img)
-
-        background_label = tk.Label(root, image=background_image)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
-        background_label.image = background_image
 
         self.colors = {
                 'header': '#465187',

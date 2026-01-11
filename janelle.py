@@ -14,6 +14,9 @@ import re
 
 DB_FILE = "tpop_favorites.db"
 
+# limit window size
+# segment the classes
+
 class DatabaseManager:
     
     @staticmethod
@@ -75,6 +78,7 @@ class DatabaseManager:
                     FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
                 )
             """)
+            conn.commit()
             
             cur.execute("CREATE INDEX IF NOT EXISTS idx_favorites_user ON favorites(user_id)")
             cur.execute("CREATE INDEX IF NOT EXISTS idx_favorites_artist ON favorites(artist_id)")
@@ -431,34 +435,35 @@ class TPopFavoritesSystem:
         menubar.add_cascade(label="File", menu=file_menu)
         file_menu.add_command(label="New Entry (Ctrl+N)", command=self.add_entry)
         file_menu.add_separator()
-        file_menu.add_command(label="Import CSV", command=self.import_csv)
+        # file_menu.add_command(label="Import CSV", command=self.import_csv)
         file_menu.add_command(label="Export CSV (Ctrl+E)", command=self.export_data)
-        file_menu.add_command(label="Export JSON", command=self.export_json)
+        #file_menu.add_command(label="Export JSON", command=self.export_json)
         file_menu.add_separator()
-        file_menu.add_command(label="Backup Database", command=self.backup_database)
+        #file_menu.add_command(label="Backup Database", command=self.backup_database)
         file_menu.add_separator()
-        file_menu.add_command(label="Logout", command=self.logout)
-        file_menu.add_command(label="Exit", command=self.root.quit)
+        # file_menu.add_command(label="Logout", command=self.logout)
+        # file_menu.add_command(label="Exit", command=self.root.quit)
         
         
         view_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="View", menu=view_menu)
         view_menu.add_command(label="Refresh (F5)", command=self.refresh_table)
-        view_menu.add_command(label="Analytics Dashboard", command=self.show_analytics)
-        view_menu.add_command(label="Activity Log", command=self.show_activity_log)
+        # view_menu.add_command(label="Analytics Dashboard", command=self.show_analytics)
+        # view_menu.add_command(label="Activity Log", command=self.show_activity_log)
         
         
         tools_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Tools", menu=tools_menu)
         tools_menu.add_command(label="Advanced Search", command=self.advanced_search)
-        tools_menu.add_command(label="Generate Report", command=self.generate_report)
-        tools_menu.add_command(label="Statistics", command=self.show_statistics)
+        # tools_menu.add_command(label="Generate Report", command=self.generate_report)
+        # tools_menu.add_command(label="Statistics", command=self.show_statistics)
         
         
         help_menu = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Help", menu=help_menu)
-        help_menu.add_command(label="Keyboard Shortcuts", command=self.show_shortcuts)
-        help_menu.add_command(label="About", command=self.show_about)
+        # help_menu.add_command(label="Keyboard Shortcuts", command=self.show_shortcuts)
+        # help_menu.add_command(label="About", command=self.show_about)
+
     
     def create_widgets(self):
         """Create main interface"""
